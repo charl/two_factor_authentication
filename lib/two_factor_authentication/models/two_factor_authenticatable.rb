@@ -104,7 +104,7 @@ module Devise
           {
             value: value,
             key: Devise.otp_secret_encryption_key,
-            iv: iv_for_attribute[0..11],
+            iv: iv_for_attribute[0..11], # Truncating becasue of https://github.com/attr-encrypted/encryptor/issues/26.
             salt: salt_for_attribute
           }
         end
