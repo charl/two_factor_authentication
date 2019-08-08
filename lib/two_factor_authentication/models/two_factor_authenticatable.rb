@@ -104,7 +104,7 @@ module Devise
           {
             value: value,
             key: Devise.otp_secret_encryption_key,
-            iv: iv_for_attribute,
+            iv: iv_for_attribute[0..12],
             salt: salt_for_attribute
           }
         end
