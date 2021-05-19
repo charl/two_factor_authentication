@@ -46,7 +46,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
 
     if resource.max_login_attempts?
       sign_out(resource)
-      render :max_login_attempts_reached
+      redirect_to :root and return
 
     else
       render :show
@@ -62,7 +62,7 @@ class Devise::TwoFactorAuthenticationController < DeviseController
     @limit = resource.max_login_attempts
     if resource.max_login_attempts?
       sign_out(resource)
-      render :max_login_attempts_reached and return
+      redirect_to :root and return
     end
   end
 end
