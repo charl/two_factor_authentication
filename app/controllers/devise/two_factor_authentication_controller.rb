@@ -46,6 +46,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
 
     if resource.max_login_attempts?
       sign_out(resource)
+      flash.now[:error] = "after_two_factor_fail_for"
+      Rails.logger.debug "$after_two_factor_fail_for$"
       redirect_to :root and return
 
     else
@@ -62,6 +64,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
     @limit = resource.max_login_attempts
     if resource.max_login_attempts?
       sign_out(resource)
+      flash.now[:error] = "prepare_and_validate"
+      Rails.logger.debug "$prepare_and_validate$"
       redirect_to :root and return
     end
   end
